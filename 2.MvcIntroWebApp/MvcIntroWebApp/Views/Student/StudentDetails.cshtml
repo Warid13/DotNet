@@ -1,0 +1,79 @@
+﻿@using MvcIntroWebApp.Models
+@model List<MvcIntroWebApp.Models.Student>
+@{
+    Layout = null;
+    //Student student = ViewBag.Student;
+    //List<Student> students = ViewBag.StudentList;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StudentDetails</title>
+</head>
+<body>
+    <div>
+
+        @foreach (Student student in Model)
+        {
+            <h1>@student.Name</h1>
+            <h1>@student.Address</h1>
+            <h1>@student.Department</h1>
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        @*<h1>@ViewBag.Message</h1>*@
+
+        @*<table border="1">
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Department</th>
+                </tr>
+
+                @foreach (Student student in students)
+                {
+                    <tr>
+                        <th>@student.Name</th>
+                        <th>@student.Address</th>
+                        <th>@student.Department</th>
+                    </tr>
+                }
+            </table>*@
+
+
+        @*<h1>@student.Name</h1>
+            <h1>@student.Address</h1>
+            <h1>@student.Department</h1>*@
+
+
+    </div>
+</body>
+</html>
