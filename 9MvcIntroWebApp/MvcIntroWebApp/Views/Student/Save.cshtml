@@ -1,0 +1,77 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Save</title>
+</head>
+<body>
+<div>
+
+    @if (ViewBag.Message != null)
+    {
+          <label>@ViewBag.Message</label>
+    }
+
+
+    <form id="signupForm" method="POST">
+
+        <table>
+            <tr>
+                <td>
+                    <label for="Name">Name</label>
+                </td>
+                <td>
+                    <input id="Name" name="Name" type="text" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="Address">Address</label>
+                </td>
+                <td>
+                    <input id="Address" name="Address" type="text" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="Department">Department</label>
+                </td>
+                <td>
+                    <input id="Department" name="Department" type="text" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="submit" value="Save" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script>
+        $("#signupForm").validate({
+            rules: {
+                Name: "required",
+                Address: "required",
+               
+                Department: "required"
+            },
+            messages: {
+                Name: "Please enter your name",
+                Address: "Please enter your address",
+                
+                Department: "Please enter your department"
+            }
+        });
+    </script>
+</div>
+</body>
+</html>
