@@ -1,0 +1,77 @@
+﻿@using MvcIntroWebApp.Models
+@model Student
+@{
+    Layout = null;
+    List<SelectListItem> departments = ViewBag.Departments;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Save</title>
+</head>
+<body>
+    <div>
+
+        @if (ViewBag.Message != null)
+        {
+            <label>@ViewBag.Message</label>
+        }
+        
+        @using (Html.BeginForm("Save","Student",FormMethod.Post, new { id="StudentRegistrationForm",@class="" }))
+        {
+             <table>
+                <tr>
+                    <td>                        
+                        @Html.LabelFor(x=>x.Name)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(x => x.Name)
+                        @Html.ValidationMessageFor(x=>x.Name)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        
+                        @Html.LabelFor(x => x.Address)
+                    </td>
+                    <td>
+                        
+                        @Html.TextBoxFor(x => x.Address)
+                        @Html.ValidationMessageFor(x => x.Address)                        
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        
+                        @Html.LabelFor(x => x.DepartmentId)
+                    </td>
+                    <td>
+                       
+                        @Html.DropDownListFor(x => x.DepartmentId, new SelectList(departments, "Value", "Text"))
+                        @Html.ValidationMessageFor(x => x.DepartmentId)
+                       
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="submit" value="Save" />
+                    </td>
+                </tr>
+            </table>
+        }
+        
+        
+        
+        
+
+        <script src="~/Scripts/jquery-1.10.2.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script> 
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>       
+    </div>
+</body>
+</html>

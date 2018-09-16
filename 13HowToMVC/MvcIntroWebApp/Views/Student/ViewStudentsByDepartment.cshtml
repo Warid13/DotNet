@@ -1,0 +1,82 @@
+﻿@{
+    Layout = null;
+    List<SelectListItem> departments = ViewBag.Departments;
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewStudentsByDepartment</title>
+</head>
+<body>
+    <div style="width: 500px; margin: 0 auto">
+        @Html.DropDownList("DepartmentId", new SelectList(departments, "Value", "Text"))
+        <br />
+        <br/>
+
+        @Html.DropDownList("StudentId",new SelectList(""),"--Select--")
+
+        @*<table border="1">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Address</td>
+                    <td>Department</td>
+                </tr>
+            </thead>
+            <tbody id="StudentDetails">
+            
+            </tbody>
+        </table>*@
+
+
+
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script>
+            $(document).ready(function () {
+
+                $('#DepartmentId').change(function () {
+
+                    var departmentId = $('#DepartmentId').val();
+
+                    var json = { deptId: departmentId };
+
+                    $.ajax({
+
+                        type: "POST",
+
+                        url: '@Url.Action("GetStudentsByDepartmentId", "Student")',
+                        //url: '/Department/GetStudentsByDepartmentId',
+
+                        contentType: "application/json; charset=utf-8",
+
+                        data: JSON.stringify(json),
+
+                        success: function (data) {
+
+
+                            //$("#StudentDetails").empty();
+                            $("#StudentId").empty();
+                            $("#StudentId").append('<option value="">--Select--</option>');
+
+                            
+
+                            $.each(data, function (key, value) {
+
+                                $("#StudentId").append('<option value=' + value.StudentId + '>' + value.StudentName + '</option>');
+                                //$("#StudentDetails").append('<tr> <td>'+value.StudentName+'</td>   <td>'+value.Address+'</td>   <td>'+value.DepartmentName+'</td></tr>');
+
+                            });
+
+                        }
+                    });
+
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>
